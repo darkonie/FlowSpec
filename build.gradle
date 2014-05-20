@@ -1,0 +1,12 @@
+apply plugin: 'eclipse'
+apply plugin: 'groovy'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.3.0'
+    compile files('/Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Home/lib/tools.jar')
+    testCompile 'junit:junit:4.11'
+}
