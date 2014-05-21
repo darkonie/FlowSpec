@@ -18,7 +18,7 @@ public class ClassGenerator {
 		}
 	}
 	
-	public generateClass(Map params) {
+	private void generateClass(Map params) {
 		String clsTemplateResource = this.class.getResource("/${classTemplateName}").text
 		SimpleTemplateEngine engine = new SimpleTemplateEngine()
 		String clsTemplate = engine.createTemplate(clsTemplateResource).make(params).toString()
@@ -28,7 +28,7 @@ public class ClassGenerator {
 		Integer errCode = Main.compile(s)
 	}
 	
-	public cleanClass() {			
+	private boolean cleanClass() {			
 		if(!tmpClassPath.startsWith("/tmp")) {
 			throw new NotTmpDir()
 		}

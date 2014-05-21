@@ -3,15 +3,15 @@ package com.dthbs
 import groovy.lang.Binding
 import groovy.lang.Script;
 
-abstract class ClosureClass extends Script {
+abstract class ClosureScript extends Script {
 	private GroovyObject delegate;
 
-	public ClosureClass() {
+	public ClosureScript() {
 		// TODO Auto-generated constructor stub
 		super();
 	}
 
-	public ClosureClass(Binding binding) {
+	public ClosureScript(Binding binding) {
 		super(binding);
 		// TODO Auto-generated constructor stub
 	}
