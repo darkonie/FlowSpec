@@ -1,4 +1,4 @@
- FlowSpec
+ FlowSpec [![Build Status](https://travis-ci.org/darkonie/FlowSpec.svg?branch=master)](https://travis-ci.org/darkonie/FlowSpec)
 =========
 
 
