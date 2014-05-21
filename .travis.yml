@@ -3,3 +3,7 @@ jdk: oraclejdk7
 
 script:
   - gradle build
+
+before_install:
+  - "ls -la /usr/lib/jvm/java-7-oracle"
+  - "ls -la /usr/lib/jvm/java-7-oracle/lib"
