@@ -18,18 +18,23 @@ public class ClassGenerator {
 		}
 	}
 	
-	public createClass(Map params) {
+	public generateClass(Map params) {
 		String clsTemplateResource = this.class.getResource("/${classTemplateName}").text
-		
 		SimpleTemplateEngine engine = new SimpleTemplateEngine()
-		
-		//Map b = [p: "com.mama", c: "MyClass"]
 		String clsTemplate = engine.createTemplate(clsTemplateResource).make(params).toString()
-		//String clsTemplate = template.toString()
-		
         File classFile = new File("${tmpClassPath}/${className}.java")
 		classFile.setText(clsTemplate)
 		String[] s = ["-d", "${tmpClassPath}", "${tmpClassPath}/${className}.java"]
 		Integer errCode = Main.compile(s)
-	}	
+	}
+	
+	public cleanClass() {			
+		if(!tmpClassPath.startsWith("/tmp")) {
+			throw new NotTmpDir()
+		}
+		
+		return new File(tmpClassPath).deleteDir()
+	}
 }
+
+class NotTmpDir extends Exception {}
