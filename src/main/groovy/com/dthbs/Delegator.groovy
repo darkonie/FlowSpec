@@ -1,15 +1,47 @@
 package com.dthbs
 
 class Delegator {
-
-	public Delegator() {
-		// TODO Auto-generated constructor stub
+	private static final INSTANCE = new Delegator()
+	static getInstance() { return INSTANCE }
+	static Map calledMethodsMap = [:]
+	private Delegator() {}
+	
+	def updateCalledMethodsMap(String methodName) {
+		if(calledMethodsMap[methodName]) {
+			calledMethodsMap[methodName]++;
+		  }
+		  else {
+			calledMethodsMap[methodName] = 1
+		  }
 	}
 	
-	def build(Map args, String jobName) {}
-	def build(String jobName) {}
-	def guard(guardedClosure) {}
-	def ignore(Result result, closure) {}
-	def retry(int attempts, worstAllowed='SUCCESS', retryClosure) {}
-	def List<FlowState> parallel(Collection<? extends Closure> closures) {}
+	// Delegated methods
+	def build(String jobName) {
+		String methodName = Thread.currentThread().stackTrace[10].methodName;
+		updateCalledMethodsMap(methodName);
+	}
+	
+	def build(Map args, String jobName) {
+		String methodName = Thread.currentThread().stackTrace[10].methodName;
+		updateCalledMethodsMap(methodName);
+	}
+	def guard(guardedClosure) {
+		String methodName = Thread.currentThread().stackTrace[10].methodName;
+		updateCalledMethodsMap(methodName);
+	}
+	
+	def ignore(Result result, closure) {
+		String methodName = Thread.currentThread().stackTrace[10].methodName;
+		updateCalledMethodsMap(methodName);
+	}
+	
+	def retry(int attempts, worstAllowed='SUCCESS', retryClosure) {
+		String methodName = Thread.currentThread().stackTrace[10].methodName;
+		updateCalledMethodsMap(methodName);
+	}
+	
+	def List<FlowState> parallel(Collection<? extends Closure> closures) {
+		String methodName = Thread.currentThread().stackTrace[10].methodName;
+		updateCalledMethodsMap(methodName);
+	}
 }

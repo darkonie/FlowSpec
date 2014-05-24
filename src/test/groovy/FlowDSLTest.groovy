@@ -1,6 +1,6 @@
 import static org.junit.Assert.*;
 
-import com.dthbs.FlowDSL
+import com.dthbs.*;
 import org.junit.Test;
 
 
@@ -9,9 +9,9 @@ class FlowDSLTest extends GroovyTestCase{
 	@Test
 	public void test() {
 		FlowDSL flow = new FlowDSL()
-		String dsl = 'println "Hello World"'
+		String dsl = 'build("testjob"); build("AnotherJob")'
 		flow.executeFlowScript(dsl)
-		assert 1 == 1
+		assert Delegator.calledMethodsMap["build"] == 2
 	}
 
 }

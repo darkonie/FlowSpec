@@ -3,19 +3,20 @@ package com.dthbs
 import groovy.lang.Binding
 import groovy.lang.Script;
 
-abstract class ClosureScript extends Script {
+public abstract class ClosureScript extends Script {
 	private GroovyObject delegate;
 
-	public ClosureScript() {
-		// TODO Auto-generated constructor stub
+	protected ClosureScript() {
 		super();
 	}
 
-	public ClosureScript(Binding binding) {
+	protected ClosureScript(Binding binding) {
 		super(binding);
-		// TODO Auto-generated constructor stub
 	}
-	
+
+	/**
+	 * Sets the delegation target.
+	 */
 	public void setDelegate(GroovyObject delegate) {
 		this.delegate = delegate;
 	}
@@ -28,7 +29,7 @@ abstract class ClosureScript extends Script {
 			return super.invokeMethod(name, args);
 		}
 	}
-	
+
 	@Override
 	public Object getProperty(String property) {
 		try {
