@@ -6,7 +6,13 @@ repositories {
 }
 
 dependencies {
+    compile 'commons-cli:commons-cli:1.2'
     compile 'org.codehaus.groovy:groovy-all:2.3.0'
     compile files('/usr/lib/jvm/java-7-oracle/lib/tools.jar')
     testCompile 'junit:junit:4.11'
+}
+
+jar {
+  from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+  manifest { attributes 'Main-Class': 'com.dthbs.FlowSpecMain'}
 }
