@@ -1,6 +1,6 @@
 package com.dthbs
 
-class Delegator {
+class Delegator 
 	private static final INSTANCE = new Delegator()
 	static getInstance() { return INSTANCE }
 	static Map calledMethodsMap = [:]
@@ -17,14 +17,17 @@ class Delegator {
 	
 	// Delegated methods
 	def build(String jobName) {
-		String methodName = Thread.currentThread().stackTrace[10].methodName;
-		updateCalledMethodsMap(methodName);
+		build([:], jobName);
 	}
 	
 	def build(Map args, String jobName) {
 		String methodName = Thread.currentThread().stackTrace[10].methodName;
 		updateCalledMethodsMap(methodName);
+		println "\nSchedule job $jobName";
+		println "Build $jobName #${calledMethodsMap[methodName]} started";
+		println "$jobName #${calledMethodsMap[methodName]} completed\n";
 	}
+	
 	def guard(guardedClosure) {
 		String methodName = Thread.currentThread().stackTrace[10].methodName;
 		updateCalledMethodsMap(methodName);

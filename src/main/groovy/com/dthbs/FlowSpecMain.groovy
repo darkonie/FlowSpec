@@ -14,10 +14,18 @@ public class FlowSpecMain {
 		cli.dsl(args:1, argName:'DslScript', 'Path to Build Flow DSL script');
 		cli.h("Help")
 		def options = cli.parse(args)
-		//println options.dsl
-		
-		if(options.h || options.arguments().size() < 1) {
+
+		if (options.h) {
 			cli.usage();
 		}
+
+		// Run Build Flows cript
+		if (options.dsl) {
+			File dslFile = new File(options.dsl);
+			FlowDSL flow = new FlowDSL();
+			flow.executeFlowScript(dslFile.getText());
+		}
+		
+
 	}
 }
