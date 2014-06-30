@@ -1,6 +1,6 @@
 package com.dthbs
 
-class Delegator 
+class Delegator {
 	private static final INSTANCE = new Delegator()
 	static getInstance() { return INSTANCE }
 	static Map calledMethodsMap = [:]
